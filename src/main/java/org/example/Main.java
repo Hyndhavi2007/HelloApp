@@ -6,30 +6,27 @@ public class Main {
     }
     public static void displayGreeting(String[] args) {
         String name = "World";
-        // ===== UC4 START =====
-        // UC4: Handle multiple user names from command-line arguments
-        // If multiple names are provided, combine them into a single string
-        // separated by commas (e.g., John, Mike, Anna)
+        // ===== UC5 START =====
         if (args.length > 0) {
             StringBuilder nameBuilder = new StringBuilder();
-            for (int i = 0; i < args.length; i++) {
-                nameBuilder.append(args[i]);
-                // Add comma between names (except after last name)
-                if (i < args.length - 1) {
+            boolean first = true;
+            for (String n : args) {
+                if (!first) {
                     nameBuilder.append(", ");
                 }
+                nameBuilder.append(n);
+                first = false;
             }
             name = nameBuilder.toString();
         }
         System.out.println("Hello, " + name + "!");
     }
-}
-/*
-* StringBuilder is a class in java used to create and modify strings efficiently.
-* Strings are immutable.
-* So, every time we use "+", java
-* 1. creates a new object
-* 2.wastes memory
-* 3.slows the performance
-* String is like writing with pen where we cannot erase and rewrite new page.
-* StringBuilder is like pencil where we can keep editing */
+}/*
+In UC-5 it does the same functionality as UC-4, but
+1.Uses enhanced for loop
+2.Code becomes simpler and readable
+3.No need to manage i or args.length
+We use enhanced for loop when:
+1. We don't need index
+2. We just want to read values
+*/
