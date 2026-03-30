@@ -1,31 +1,35 @@
 package org.example;
-
-/**
- * Main class for Hello Application
- * Demonstrates UC1, UC2 and UC3 using methods
- */
 public class Main {
     public static void main(String[] args) {
-
-        // ===== UC1: Print default message =====
         System.out.println("Hello, World!");
-        // ===== UC2 & UC3 =====
         displayGreeting(args);
     }
-    /**
-     * UC2 & UC3 Method:
-     * Displays a greeting message.
-     * If a name is provided → greets user (UC2)
-     * If no name is provided → uses default "World" (UC3)
-     */
     public static void displayGreeting(String[] args) {
-        // Default value (UC3)
         String name = "World";
-        // Check if user has provided any input (UC2)
+        // ===== UC4 START =====
+        // UC4: Handle multiple user names from command-line arguments
+        // If multiple names are provided, combine them into a single string
+        // separated by commas (e.g., John, Mike, Anna)
         if (args.length > 0) {
-            name = args[0];
+            StringBuilder nameBuilder = new StringBuilder();
+            for (int i = 0; i < args.length; i++) {
+                nameBuilder.append(args[i]);
+                // Add comma between names (except after last name)
+                if (i < args.length - 1) {
+                    nameBuilder.append(", ");
+                }
+            }
+            name = nameBuilder.toString();
         }
-        // Common output
         System.out.println("Hello, " + name + "!");
     }
 }
+/*
+* StringBuilder is a class in java used to create and modify strings efficiently.
+* Strings are immutable.
+* So, every time we use "+", java
+* 1. creates a new object
+* 2.wastes memory
+* 3.slows the performance
+* String is like writing with pen where we cannot erase and rewrite new page.
+* StringBuilder is like pencil where we can keep editing */
