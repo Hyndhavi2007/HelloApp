@@ -6,27 +6,25 @@ public class Main {
     }
     public static void displayGreeting(String[] args) {
         String name = "World";
-        // ===== UC5 START =====
         if (args.length > 0) {
             StringBuilder nameBuilder = new StringBuilder();
-            boolean first = true;
             for (String n : args) {
-                if (!first) {
-                    nameBuilder.append(", ");
-                }
-                nameBuilder.append(n);
-                first = false;
+                nameBuilder.append(n).append(", ");
             }
-            name = nameBuilder.toString();
+            if (nameBuilder.length() > 0) {
+                name = nameBuilder.substring(0, nameBuilder.length() - 2);
+            }
         }
         System.out.println("Hello, " + name + "!");
     }
-}/*
-In UC-5 it does the same functionality as UC-4, but
-1.Uses enhanced for loop
-2.Code becomes simpler and readable
-3.No need to manage i or args.length
-We use enhanced for loop when:
-1. We don't need index
-2. We just want to read values
+}
+/*
+UC-6 Explanation:
+1. Adds ", " after every name using StringBuilder
+2. This creates an extra comma at the end
+3. substring() is used to remove the last ", "
+4. Produces clean output like: Hello, John, Mike, Anna!
+Why UC6:
+- Simpler logic (no need for boolean or index)
+- Always append, then fix at the end
 */
